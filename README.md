@@ -1,16 +1,99 @@
-# React + Vite
+# 💰 Finance Dashboard UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📌 Overview
 
-Currently, two official plugins are available:
+This project is a responsive finance dashboard built to help users track their financial activity, explore transactions, and gain insights into spending patterns.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+It demonstrates frontend skills including UI design, state management, and interactive data visualization using mock data.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Features
 
-## Expanding the ESLint configuration
+### 📊 Dashboard Overview
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* Summary cards (Total Balance, Income, Expenses)
+* Monthly trend visualization (Area Chart)
+* Category-wise spending breakdown (Pie Chart)
+
+### 💳 Transactions
+
+* View transactions with date, amount, category, and type
+* Search and filter transactions
+* Responsive layout (table → card on mobile)
+
+### 👥 Role-Based UI
+
+* Viewer: Read-only access
+* Admin: Add and delete transactions
+* Role switch simulation via dropdown
+
+### 📈 Insights
+
+* Highest spending category
+* Month-over-month comparison
+* Savings insights
+
+---
+
+## ⚙️ Tech Stack
+
+* React (Vite)
+* Tailwind CSS
+* Recharts (charts)
+* LocalStorage (data persistence)
+
+---
+
+## 📱 Responsiveness
+
+* Mobile-first adjustments
+* Adaptive layouts (cards for mobile, grid for desktop)
+* Fully usable across screen sizes
+
+---
+
+## 💾 Data Handling
+
+* Uses mock data
+* Stores transactions in LocalStorage
+* No backend required
+
+---
+
+## 🛠️ Setup Instructions
+
+```bash
+# Clone repo
+git clone <your-repo-link>
+
+# Install dependencies
+npm install
+
+# Run project
+npm run dev
+```
+
+---
+
+## 🎯 Approach
+
+* Focused on clean UI and usability
+* Built modular components
+* Implemented responsive design patterns
+* Simulated real-world dashboard behavior
+
+---
+
+## 🔍 Notes
+
+This project is frontend-only and focuses on demonstrating UI/UX and state handling rather than backend integration.
+
+---
+
+## 📌 Future Improvements
+
+* API integration
+* Advanced filtering
+* Better state management (Zustand/Redux)
+* Export & analytics enhancements
