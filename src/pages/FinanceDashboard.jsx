@@ -150,8 +150,13 @@ export default function FinanceDashboard() {
                   <h3 style={{ margin: 0, fontFamily: "'Playfair Display', serif", fontSize: 18, fontWeight: 600 }}>Balance Trend</h3>
                   <p style={{ margin: "4px 0 0", fontSize: 12, color: "#64748B" }}>6-month overview</p>
                 </div>
-                <ResponsiveContainer width="100%" height={220}>
-                  <AreaChart data={MONTHLY_TREND}>
+                {MONTHLY_TREND.length === 0 ? (
+  <div className="flex items-center justify-center h-[250px] text-slate-500">
+    No trend data available
+  </div>
+) : (
+  <ResponsiveContainer width="100%" height={220}>
+    <AreaChart data={MONTHLY_TREND}>
                     <defs>
                       <linearGradient id="balGrad" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="0%" stopColor="#F59E0B" stopOpacity={0.3} />
@@ -169,7 +174,7 @@ export default function FinanceDashboard() {
                     <Area type="monotone" dataKey="income" name="Income" stroke="#10B981" fill="url(#incGrad)" strokeWidth={2} dot={false} />
                     <Area type="monotone" dataKey="balance" name="Balance" stroke="#F59E0B" fill="url(#balGrad)" strokeWidth={2.5} dot={{ fill: "#F59E0B", r: 4 }} />
                   </AreaChart>
-                </ResponsiveContainer>
+                </ResponsiveContainer>)}
               </div>
 
               {/* Spending Breakdown Pie */}
@@ -248,7 +253,14 @@ export default function FinanceDashboard() {
             <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
 
   {/* Header (desktop only) */}
-  <div className="hidden sm:grid grid-cols-[120px_1fr_130px_110px_120px_80px] px-6 py-3 border-b border-white/10 text-xs text-slate-500 uppercase tracking-wider font-semibold">
+ <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
+
+  {/* HEADER (DESKTOP ONLY) */}
+  <div className={`hidden sm:grid px-6 py-3 border-b border-white/10 text-xs text-slate-500 uppercase tracking-wider font-semibold ${
+    isAdmin
+      ? "grid-cols-[120px_1fr_130px_110px_120px_80px]"
+      : "grid-cols-[120px_1fr_130px_110px_120px]"
+  }`}>
     <span>Date</span>
     <span>Description</span>
     <span>Category</span>
@@ -256,6 +268,102 @@ export default function FinanceDashboard() {
     <span className="text-right">Amount</span>
     {isAdmin && <span className="text-center">Act</span>}
   </div>
+
+  {/* EMPTY STATE */}
+  {filtered.length === 0 ? (
+    <div className="py-12 text-center text-slate-500">
+      <div className="text-3xl mb-2">🔍</div>
+      <div className="text-sm">No transactions match your filters</div>
+    </div>
+  ) : (
+    filtered.map((t, i) => (
+      <div
+        key={t.id}
+        className={`border-b border-white/5 p-4 sm:px-6 sm:py-4 flex flex-col gap-3 sm:grid sm:items-center hover:bg-white/5 transition ${
+          isAdmin
+            ? "sm:grid-cols-[120px_1fr_130px_110px_120px_80px]"
+            : "sm:grid-cols-[120px_1fr_130px_110px_120px]"
+        }`}
+      >
+
+        {/* MOBILE VIEW */}
+        <div className="flex justify-between sm:hidden text-xs text-slate-400">
+          <span>{fmtDate(t.date)}</span>
+          <span className={`${t.type === "income" ? "text-green-400" : "text-red-400"} font-semibold`}>
+            {t.type === "income" ? "+" : "-"}{fmt(t.amount)}
+          </span>
+        </div>
+
+        <div className="sm:hidden text-sm font-medium text-slate-200">
+          {t.description}
+        </div>
+
+        <div className="sm:hidden flex justify-between items-center">
+          <span
+            className="text-xs px-2 py-1 rounded-md"
+            style={{
+              background: `${CATEGORY_COLORS[t.category]}22`,
+              color: CATEGORY_COLORS[t.category],
+            }}
+          >
+            {t.category}
+          </span>
+
+          <span className={`text-xs font-semibold ${
+            t.type === "income" ? "text-green-400" : "text-slate-400"
+          }`}>
+            {t.type === "income" ? "↑ Income" : "↓ Expense"}
+          </span>
+        </div>
+
+        {/* DESKTOP VIEW (MATCHES HEADER EXACTLY) */}
+        <div className="hidden sm:block text-xs text-slate-400">
+          {fmtDate(t.date)}
+        </div>
+
+        <div className="hidden sm:block text-sm font-medium text-slate-200">
+          {t.description}
+        </div>
+
+        <div className="hidden sm:block">
+          <span
+            className="text-xs px-2 py-1 rounded-md"
+            style={{
+              background: `${CATEGORY_COLORS[t.category]}22`,
+              color: CATEGORY_COLORS[t.category],
+            }}
+          >
+            {t.category}
+          </span>
+        </div>
+
+        <div className={`hidden sm:block text-xs font-semibold ${
+          t.type === "income" ? "text-green-400" : "text-slate-400"
+        }`}>
+          {t.type === "income" ? "↑ Income" : "↓ Expense"}
+        </div>
+
+        <div className={`hidden sm:block text-right font-bold ${
+          t.type === "income" ? "text-green-400" : "text-red-400"
+        }`}>
+          {t.type === "income" ? "+" : "-"}{fmt(t.amount)}
+        </div>
+
+        {isAdmin && (
+          <div className="hidden sm:flex justify-center">
+            <button
+              onClick={() => handleDelete(t.id)}
+              className="text-slate-400 hover:text-red-400 transition"
+            >
+              ✕
+            </button>
+          </div>
+        )}
+
+      </div>
+    ))
+  )}
+</div>
 
   {filtered.length === 0 ? (
     <div className="py-12 text-center text-slate-500">
