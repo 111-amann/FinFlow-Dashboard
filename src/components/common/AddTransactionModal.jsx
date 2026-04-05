@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ALL_CATEGORIES } from "../data/mockData";
+import { ALL_CATEGORIES } from "../../data/mockData";
 
 export default function AddTransactionModal({ onClose, onAdd }) {
   const [form, setForm] = useState({

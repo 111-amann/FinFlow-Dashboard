@@ -1,15 +1,12 @@
 import React from "react";
-import { fmt } from "../utils/format";
+import { fmt } from "../../utils/format";
 
 export default function CustomTooltip({ active, payload, label }) {
   if (!active || !payload?.length) return null;
 
   return (
     <div className="bg-[#0F1729] border border-white/10 rounded-lg px-3 sm:px-4 py-2 text-xs sm:text-sm max-w-[200px] sm:max-w-[260px] break-words shadow-lg">
-
-      <div className="text-slate-400 mb-1 truncate">
-        {label}
-      </div>
+      <div className="text-slate-400 mb-1 truncate">{label}</div>
 
       {payload.map((p, i) => (
         <div
