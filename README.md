@@ -65,7 +65,7 @@ It demonstrates frontend skills including UI design, state management, and inter
 
 ```bash
 # Clone repo
-git clone <your-repo-link>
+git clone https://github.com/111-amann/FinFlow-Dashboard
 
 # Install dependencies
 npm install
