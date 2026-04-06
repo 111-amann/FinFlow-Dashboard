@@ -1,3 +1,11 @@
+## Submission Note
+
+Due to technical issues with the submission portal, email delivery failure, and the company website being inaccessible, I am submitting my assignment via GitHub.
+
+Reference ID: TESWQ52X  
+Submission Date: 6 April (before deadline)
+
+
 # 💰 Finance Dashboard UI
 
 ## 📌 Overview
