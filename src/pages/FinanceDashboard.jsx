@@ -82,6 +82,7 @@ export default function FinanceDashboard() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700&display=swap');
         * { box-sizing: border-box; }
+        * :focus { outline: none !important; }
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
